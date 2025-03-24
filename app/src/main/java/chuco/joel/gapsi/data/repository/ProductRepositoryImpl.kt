@@ -14,11 +14,13 @@ class ProductRepositoryImpl @Inject constructor(
 ) : ProductRepository {
 
     override suspend fun searchProductByKeyword(query: String, page: Int): Flow<Result<ProductResponseDto>> {
-        return networkBoundResources.callService { apiService.searchProductByKeyword(
-            query = query,
-            page = page,
-            sortBy = SORT_BEST_MATCH
-        ) }
+        return networkBoundResources.callService {
+            apiService.searchProductByKeyword(
+                query = query,
+                page = page,
+                sortBy = SORT_BEST_MATCH
+            )
+        }
     }
 
 }

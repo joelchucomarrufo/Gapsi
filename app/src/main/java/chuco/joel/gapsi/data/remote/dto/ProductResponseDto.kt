@@ -1,5 +1,6 @@
 package chuco.joel.gapsi.data.remote.dto
 
+import chuco.joel.gapsi.domain.model.Product
 import com.google.gson.annotations.SerializedName
 
 class ProductResponseDto : BaseResponse<ItemDto>()
@@ -27,3 +28,15 @@ data class SearchResultDto(
 data class ItemStackDto(
     @SerializedName("items") val items: ArrayList<ProductDto>,
 )
+
+fun ProductResponseDto.toDomainList(): List<Product> {
+    return item
+        ?.props
+        ?.pageProps
+        ?.initialData
+        ?.searchResult
+        ?.itemStacks
+        ?.flatMap { it.items }
+        ?.map { it.toDomain() }
+        ?: emptyList()
+}
