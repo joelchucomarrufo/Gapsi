@@ -42,7 +42,7 @@ object NetworkModule {
 
             val newRequest = request.newBuilder()
                 .apply {
-                    header("X-IBM-Client-Id", BuildConfig.API_KEY)
+                    header("x-rapidapi-key", BuildConfig.API_KEY)
                 }
                 .build()
 

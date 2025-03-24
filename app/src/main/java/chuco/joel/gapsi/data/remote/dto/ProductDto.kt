@@ -4,15 +4,21 @@ import chuco.joel.gapsi.domain.model.Product
 import com.google.gson.annotations.SerializedName
 
 data class ProductDto(
-    @SerializedName("title") val title: String,
+    @SerializedName("id") val id: String,
+    @SerializedName("name") val name: String,
     @SerializedName("price") val price: Double,
-    @SerializedName("thumbnail") val thumbnail: String
+    @SerializedName("imageInfo") val imageInfo: ProductImageInfoDto,
+)
+
+data class ProductImageInfoDto(
+    @SerializedName("thumbnailUrl") val thumbnailUrl: String,
 )
 
 fun ProductDto.toDomain(): Product {
     return Product(
-        title = title,
+        id = id,
+        title = name,
         price = price,
-        thumbnail = thumbnail
+        thumbnail = imageInfo.thumbnailUrl
     )
 }
